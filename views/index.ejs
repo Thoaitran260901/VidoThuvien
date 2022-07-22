@@ -14,11 +14,22 @@
     <table class="table table-inverse">
         <thead>
           <tr>
-            <th>BỘ TÀI LIỆU NỔI BẬT</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Descrisption</th>
+            <th>infomation</th>
           </tr>
         </thead>
-
-        
+        <tbody>
+          <tr>
+            <% Sach.forEach(entry => { %>
+              <td><%= entry.Id %></td>
+              <td><%= entry.Name %></td>
+              <td><%= entry.Description %></td>
+              <td><%= entry.Infomation %></td>
+          </tr>
+        <% }) %>
+        </tbody>
     </table>
   </div>
 </main>
