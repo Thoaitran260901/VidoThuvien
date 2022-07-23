@@ -31,4 +31,19 @@ router.get('/sach', function(req, res, next){
     });
   })
 })
+
+router.get('/deletebook/:id', function(req, res, next){
+  config.getConnection((err, connection) => {
+    if(err) throw err
+    console.log('da ket noi mysql');
+    connection.query("DELETE FROM `sach` WHERE id = ?", [req.params.id], (err, rows)=>{
+        if(!err){
+          res.redirect('/');
+        }else{
+          console.log(err);
+        }
+    });
+  })
+})
+
 module.exports = router;

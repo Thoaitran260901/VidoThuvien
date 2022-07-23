@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-3">
+     <h3 class="text-center">Update</h3>
+     <% Sach.forEach(entry => { %> 
+     <form action="/editbook/<%=entry.Id%>" method="post">
+        <input type="hidden" name="Id" value="<%=entry.Id%>">
+         <label for="name">Name</label>
+         <input type="text" name="Name" value="<%=entry.Name%>" class="form-control">
+         <label for="description">Description</label>
+         <input type="text" name="Description" value="<%=entry.Description%>" class="form-control" >
+         <label for="information">Information</label>
+         <input type="text" name="Infomation" value="<%=entry.Infomation%>" class="form-control">
+         <input type="submit" value="Update" class="btn btn-primary mt-2"><br>
+         <% }) %>
+         <a href="/">Back?</a>
+     </form>
+    </div>
+  </body>
+</html>

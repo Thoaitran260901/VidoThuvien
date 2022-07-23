@@ -13,8 +13,8 @@
   <div class="jumbotron">
     <table class="table table-inverse">
         <thead>
+          <h5 class="centre">Danh sách thư viện</h5>
           <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Descrisption</th>
             <th>infomation</th>
@@ -23,10 +23,13 @@
         <tbody>
           <tr>
             <% Sach.forEach(entry => { %>
-              <td><%= entry.Id %></td>
               <td><%= entry.Name %></td>
               <td><%= entry.Description %></td>
               <td><%= entry.Infomation %></td>
+              <td>
+                <a href="/editbook/<%=entry.Id%>" class="btn btn-primary">Edit</a>
+                <a href="/deletebook/<%=entry.Id%>" class="btn btn-danger">Delete</a>
+              </td>
           </tr>
         <% }) %>
         </tbody>
