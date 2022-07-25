@@ -22,6 +22,12 @@
          <input type="text" name="Description" class="form-control">
          <label for="information">Information</label>
          <input type="text" name="Infomation" class="form-control">
+         <select name="category_Id">
+          <option value="--Select--" disabled>Category</option>
+          <% Category.forEach(entry => { %>
+          <option selected="<%= entry.category_Id %>" value="<%= entry.post_Id %>"><%= entry.Name %></option>
+          <% }) %>
+        </select>
          <input type="submit" value="Add" class="btn btn-primary mt-2"> <br>
          <a href="/">Back?</a>
      </form>

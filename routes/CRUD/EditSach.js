@@ -24,7 +24,7 @@ router.post('/:id', function(req, res, next){
       const {Name,Description,Infomation} = req.body;
       connection.query("UPDATE `sach` SET `Name`= ?,`Description`= ?,`Infomation`= ? WHERE id = ?", [Name,Description,Infomation,req.params.id],(err, rows)=>{
           if(!err){
-            res.redirect('/');
+            res.redirect('/danhsach');
           }else{
             console.log(err);
           }

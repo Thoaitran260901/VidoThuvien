@@ -33,11 +33,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.use('/', indexRouter);
+app.use('/danhsach', indexRouter); //mark
 app.use('/login', loginRouter);
 app.use('/addbook', addbookRouter);
 app.use('/editbook', editbookRouter);
-app.use('/trangchu',trangchinhRouter);
+app.use('/',trangchinhRouter); //mark
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
