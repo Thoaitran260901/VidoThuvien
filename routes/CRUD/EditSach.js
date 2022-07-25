@@ -8,7 +8,7 @@ router.get('/:id', function(req, res, next){
     config.getConnection((err, connection) => {
       if(err) throw err
       console.log('da ket noi mysql');
-      connection.query("SELECT * FROM `sach` WHERE id = ?", [req.params.id], (err, rows)=>{
+      connection.query("SELECT sach.Id,sach.Name,sach.Description,sach.Infomation,category.Name AS category_Name,category.category_Id,category.post_Id FROM `sach`,`category` WHERE sach.category_Id = category.category_Id AND sach.Id = ?", [req.params.id], (err, rows)=>{
           if(!err){
             res.render('editSach',{Sach : rows});
           }else{
@@ -21,8 +21,8 @@ router.get('/:id', function(req, res, next){
 router.post('/:id', function(req, res, next){
     config.getConnection((err, connection) => {
       if(err) throw err
-      const {Name,Description,Infomation} = req.body;
-      connection.query("UPDATE `sach` SET `Name`= ?,`Description`= ?,`Infomation`= ? WHERE id = ?", [Name,Description,Infomation,req.params.id],(err, rows)=>{
+      const {Name,Description,Infomation,category_Id} = req.body;
+      connection.query("UPDATE `sach` SET `Name`= ?,`Description`= ?,`Infomation`= ?,`category_Id` = ? WHERE id = ?", [Name,Description,Infomation,category_Id,req.params.id],(err, rows)=>{
           if(!err){
             res.redirect('/danhsach');
           }else{
