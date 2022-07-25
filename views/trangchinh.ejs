@@ -1,0 +1,28 @@
+<main class="main-content">
+    <h1>Trang chủ</h1>
+    <% Sach.forEach(entry => { %>
+    <div class="container">
+        <section class="border-bottom pb-4 mb-5"></section>
+            <div class="row gx-5">
+                <div class="col-md-6 mb-4">
+                <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/slides/080.webp" class="img-fluid" />
+                    <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                </div>
+            
+                <div class="col-md-6 mb-4">
+                    <p>Category:<span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3"><%= entry.category_Name %></span></p>
+                <h4><strong><%= entry.Name %></strong></h4>
+                <p class="text-muted">
+                    <%= entry.Infomation %>
+                </p>
+                <button type="button" class="btn btn-primary">Read more</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <% }) %>
+</main>
