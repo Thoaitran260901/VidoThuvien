@@ -1,7 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var expresslayouts = require('express-ejs-layouts'); 
+var expresslayouts = require('express-ejs-layouts');
+var fileUploads = require('express-fileupload'); 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -22,9 +23,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('layout', './layouts/trangchu');
 app.set('view engine', 'ejs');
+app.use('/image',express.static('image'));
 app.use(expresslayouts);
 app.use(logger('dev'));
 app.use(express.json());
+app.use(fileUploads());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('combined'));

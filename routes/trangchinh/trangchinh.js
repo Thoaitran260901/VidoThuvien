@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   config.getConnection((err, connection) => {
     if(err) throw err
     console.log('da ket noi mysql');
-    connection.query("SELECT sach.Id,sach.Name,sach.Description,sach.Infomation,category.Name AS category_Name FROM `sach`,`category` WHERE sach.category_Id = category.category_Id", (err, rows)=>{
+    connection.query("SELECT sach.Id,sach.Name,sach.Description,sach.Infomation,sach.Image,category.Name AS category_Name FROM `sach`,`category` WHERE sach.category_Id = category.category_Id", (err, rows)=>{
         if(!err){
           res.render('trangchinh', { Sach: rows });
         }else{

@@ -7,6 +7,7 @@
             <th>Name</th>
             <th>Descrisption</th>
             <th>infomation</th>
+            <th>Image</th>
             <th>Category</th>
           </tr>
         </thead>
@@ -16,10 +17,11 @@
               <td><%= entry.Name %></td>
               <td><%= entry.Description %></td>
               <td><%= entry.Infomation %></td>
+              <td><%= entry.Image %></td>
               <td><%= entry.category_Name %></td>
               <td>
                 <a href="/editbook/<%=entry.Id%>" class="btn btn-primary">Edit</a>
-                <a href="/deletebook/<%=entry.Id%>" class="btn btn-danger">Delete</a>
+                <a href="/danhsach/deletebook/<%=entry.Id%>" class="btn btn-danger">Delete</a>
               </td>
           </tr>
         <% }) %>
