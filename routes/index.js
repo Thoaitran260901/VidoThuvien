@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   config.getConnection((err, connection) => {
     if(err) throw err
     console.log('da ket noi mysql');
-    connection.query("SELECT sach.Id,sach.Name,sach.Description,sach.Infomation,sach.Image,category.Name AS category_Name FROM `sach`,`category` WHERE sach.category_Id = category.category_Id", (err, rows)=>{
+    connection.query("SELECT sach.Id,sach.Name,sach.Description,sach.Infomation,category.category_name FROM `sach`,`category` WHERE sach.category_Id = category.category_Id", (err, rows)=>{
         if(!err){
           res.render('index', { Sach: rows });
         }else{
@@ -17,6 +17,8 @@ router.get('/', function(req, res, next) {
     });
   })
 });
+
+
 
 router.get('/sach', function(req, res, next){
   config.getConnection((err, connection) => {
@@ -32,18 +34,35 @@ router.get('/sach', function(req, res, next){
   })
 })
 
-router.get('/deletebook/:id', function(req, res, next){
+//search
+router.post('/', function(req, res, next){
   config.getConnection((err, connection) => {
     if(err) throw err
     console.log('da ket noi mysql');
-    connection.query("DELETE FROM `sach` WHERE id = ?", [req.params.id], (err, rows)=>{
+    let searchTerm = req.body.search;
+    connection.query('SELECT sach.Name,sach.Description,sach.Infomation,category.category_name FROM `sach` INNER JOIN category ON sach.Id = category.category_Id WHERE sach.Name LIKE? OR sach.Description LIKE? OR sach.Infomation LIKE? OR category.category_name LIKE?', ['%'+ searchTerm + '%','%'+ searchTerm + '%','%'+ searchTerm + '%','%'+ searchTerm + '%'], (err, rows)=>{
         if(!err){
-          res.redirect('/danhsach');
+          res.render('index', { Sach: rows });
         }else{
           console.log(err);
         }
     });
   })
 })
+//delete
+router.get('/deletebook/:id', function(req, res, next){
+  config.getConnection((err, connection) => {
+    if(err) throw err
+    console.log('da ket noi mysql');
+    connection.query("DELETE FROM `sach` WHERE id = ?", [req.params.id], (err, rows)=>{
+        if(!err){
+          res.redirect('/');
+        }else{
+          console.log(err);
+        }
+    });
+  })
+})
+
 
 module.exports = router;
